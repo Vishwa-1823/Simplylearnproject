@@ -1,4 +1,4 @@
-name: CI-CD Pipeline
+name: Java CI/CD with Jenkins
 
 on:
   push:
@@ -26,10 +26,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: target/*.war
-
-      - name: List available artifacts
-        run: ls -R ${{ github.workspace }}
+          path: target/*.jar
+          retention-days: 7
 
   deploy:
     needs: build
@@ -40,7 +38,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: java-app
-          path: .
+          path: ./artifact
+
+      - name: List downloaded files
+        run: ls -lh ./artifact
 
       - name: Trigger Jenkins Job
         run: |
