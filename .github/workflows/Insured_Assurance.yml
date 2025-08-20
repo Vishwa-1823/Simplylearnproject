@@ -43,8 +43,8 @@ jobs:
       - name: List downloaded files
         run: ls -lh ./artifact
 
-      - name: Trigger Jenkins Job
+      - name: Deploy WAR to Jenkins
         run: |
-          curl -X POST "https://exp-tr-biographies-economy.trycloudflare.com/job/Insured_Assurance/build?token=auth123" \
-            --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }} \
-            --data-urlencode "WAR_FILE_URL=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts"
+          curl -X POST -u ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }} \
+          -F "file=@./artifact/my-app-1.0-SNAPSHOT.war" \
+           "http://https://exp-tr-biographies-economy.trycloudflare.com/job/Insured_Assurance/buildWithParameters?WAR_FILE=my-app-1.0-SNAPSHOT.war"
