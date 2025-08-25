@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      -name: Checkout
+      -name: checkout
        uses: actions/checkout@v4
-
+       
       -name: Set up JDK
        uses: actions/setup-java@v4
        with:
