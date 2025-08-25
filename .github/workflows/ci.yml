@@ -34,4 +34,4 @@ jobs:
           curl -u ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }} \
             -F "file=@target/myapp.war" \
             -F "json={\"parameter\": [{\"name\":\"WAR_FILE\", \"file\":\"file\"}]}" \
-            ${{ secrets.JENKINS_URL }}/job/deploy-myapp/build
+             http://10.74.174.9:8080/job/Project2/build
